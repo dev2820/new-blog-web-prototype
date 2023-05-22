@@ -1,7 +1,7 @@
 import { Client } from "@notionhq/client";
 
 const NOTION_API_KEY = process.env.NEXT_PUBLIC_NOTION_API_KEY;
-console.log(process.env);
+
 const notion = new Client({ auth: NOTION_API_KEY });
 
 export const getPageList = async (username: string) => {
