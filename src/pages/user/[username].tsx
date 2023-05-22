@@ -31,9 +31,12 @@ export default function UserPage() {
 }
 
 async function fetchPosts(username: string) {
-  const { data } = await axios.get(`/api/post/${username}`);
-
-  return data;
+  try {
+    const { data } = await axios.get(`/api/post/${username}`);
+    return data;
+  } catch {
+    return [];
+  }
 }
 
 const PostSummary = ({ post }: { post: any }) => {
