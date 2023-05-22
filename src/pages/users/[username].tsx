@@ -1,10 +1,11 @@
 import React from "react";
-// import { Amplify, API } from "aws-amplify";
+import { API } from "aws-amplify";
 import { useRouter } from "next/router";
 
-export default function UserPage() {
+export default async function UserPage() {
   const { query = {} } = useRouter();
-  // const posts = await API.get("post", "/post");
+  const posts = await API.get("post", "/post", {});
+  console.log(posts);
   return (
     <div>
       <h1>here is user page for {query.username || "???"}</h1>
