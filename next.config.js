@@ -4,7 +4,7 @@ const nextConfig = {
     return [
       {
         source: "/@:username",
-        destination: "/users/:username",
+        destination: "/user/:username",
       },
     ];
   },

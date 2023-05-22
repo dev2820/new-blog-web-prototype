@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-export default async function UserPage() {
+export default function UserPage() {
   const { query = {} } = useRouter();
 
   return (
