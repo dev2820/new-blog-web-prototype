@@ -24,10 +24,10 @@ const Account: React.FC<{
 }> = (props) => {
   const { loginInfo } = props;
   const { isAuthenticated, profile } = loginInfo;
-  const asUserPage = `/@${profile.name}`;
+  const toUserPage = `/@${profile.name}`;
 
   if (isAuthenticated) {
-    return <Link href={asUserPage}>{profile.name}</Link>;
+    return <Link href={toUserPage}>{profile.name}</Link>;
   } else {
     return <Link href="/login">login</Link>;
   }
