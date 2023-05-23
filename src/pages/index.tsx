@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { useUser } from "@/stores/user";
-
+import { useRouter } from "next/router";
 export default function HomePage() {
   const { isAuthenticated, profile } = useUser();
+  const router = useRouter();
+  console.log(router);
 
   const loginInfo = {
     isAuthenticated,
