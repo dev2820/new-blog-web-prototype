@@ -10,11 +10,9 @@ export default function UserPage() {
   const [posts, setPosts] = useState<any>([]);
   const username = query.username;
 
-  console.log(notion.notionCode);
-
   useEffect(() => {
     const updatePosts = async () => {
-      const _posts = await fetchPosts(username as string);
+      const _posts = await fetchPosts(username as string, notion.notionCode);
       setPosts(_posts);
     };
 
@@ -35,8 +33,7 @@ export default function UserPage() {
     </div>
   );
 }
-
-async function fetchPosts(username: string) {
+async function fetchPosts(username: string, code: string) {
   try {
     const { data } = await axios.get(`/api/post/${username}`);
     return data;
