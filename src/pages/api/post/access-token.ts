@@ -26,5 +26,5 @@ export default async function accessTokenAPI(
 
   // return response.data;
 
-  return req;
+  res.status(400).end(req.toString());
 }
