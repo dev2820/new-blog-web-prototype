@@ -6,6 +6,7 @@ import { ENV } from "@/constants";
 export default function UserPage() {
   const { query = {} } = useRouter();
   const [posts, setPosts] = useState<any>([]);
+  const [isFetched] = useState(false);
   const username = query.username;
 
   useEffect(() => {
@@ -14,7 +15,9 @@ export default function UserPage() {
       setPosts(_posts);
     };
 
-    updatePosts();
+    if (!isFetched) {
+      updatePosts();
+    }
   });
 
   return (
