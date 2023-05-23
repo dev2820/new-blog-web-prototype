@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import { redirect } from "next/navigation";
 import { useNotion } from "@/stores/notion";
 import { useUser } from "@/stores/user";
 import { useEffect } from "react";
@@ -12,9 +11,9 @@ export default function AuthRedirectPage() {
   useEffect(() => {
     if (code) {
       notion.setCode(code);
-      redirect(`/@${user.profile.name}`);
+      router.push(`/@${user.profile.name}`);
     }
-  }, [code, notion, user.profile.name]);
+  }, [code, notion, router, user.profile.name]);
 
   return <h1>loading...</h1>;
 }
