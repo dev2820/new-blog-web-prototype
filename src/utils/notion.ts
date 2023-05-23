@@ -1,7 +1,5 @@
 import { Client } from "@notionhq/client";
 
-const NOTION_API_KEY = process.env.NEXT_PUBLIC_NOTION_API_KEY;
-
 export const getPageList = async (accessToken: string) => {
   const notion = new Client({ auth: accessToken });
   const page = await notion.search({

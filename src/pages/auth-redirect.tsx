@@ -15,6 +15,7 @@ export default function AuthRedirectPage() {
     if (!code) return;
 
     const updateAccessToken = async () => {
+      console.log("update", code);
       try {
         const { data } = await axios.post("/api/post/access-token", {
           code,
