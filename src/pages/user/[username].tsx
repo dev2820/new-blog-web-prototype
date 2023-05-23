@@ -7,8 +7,6 @@ export default function UserPage() {
   const { query = {} } = useRouter();
   const [posts, setPosts] = useState<any>([]);
   const username = query.username;
-  const code = query.code;
-  console.log(code);
 
   useEffect(() => {
     console.log("effect!");
