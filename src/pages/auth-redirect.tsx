@@ -8,11 +8,10 @@ export default function AuthRedirectPage() {
   // const user = useUser();
   const router = useRouter();
   const notion = useNotion();
-  const [code] = useState(router.query.code as string);
   console.log(router);
   useEffect(() => {
     const updateAccessToken = async () => {
-      console.log(code);
+      const code = router.query.code;
       const token = await axios.post("/api/post/access-token", {
         code,
       });
@@ -20,7 +19,7 @@ export default function AuthRedirectPage() {
     };
 
     updateAccessToken();
-  }, [code]);
+  }, []);
 
   // if (code) {
   //   notion.setCode(code);
