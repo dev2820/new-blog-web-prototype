@@ -6,19 +6,17 @@ import { ENV } from "@/constants";
 export default function UserPage() {
   const { query = {} } = useRouter();
   const [posts, setPosts] = useState<any>([]);
-  const [isFetched] = useState(false);
   const username = query.username;
 
   useEffect(() => {
+    console.log("effect!");
     const updatePosts = async () => {
       const _posts = await fetchPosts(username as string);
       setPosts(_posts);
     };
 
-    if (!isFetched) {
-      updatePosts();
-    }
-  });
+    updatePosts();
+  }, [username]);
 
   return (
     <div>
