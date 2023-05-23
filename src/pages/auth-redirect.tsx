@@ -8,10 +8,11 @@ export default function AuthRedirectPage() {
   // const user = useUser();
   const router = useRouter();
   const notion = useNotion();
-  console.log(router);
+
   useEffect(() => {
     const updateAccessToken = async () => {
       const code = router.query.code;
+      console.log(code);
       const token = await axios.post("/api/post/access-token", {
         code,
       });
