@@ -10,17 +10,19 @@ export default function AuthRedirectPage() {
   const notion = useNotion();
 
   useEffect(() => {
+    const code = router.query.code;
+
+    if (!code) return;
+
     const updateAccessToken = async () => {
-      const code = router.query.code;
-      console.log(code);
-      const token = await axios.post("/api/post/access-token", {
+      const { data } = await axios.post("/api/post/access-token", {
         code,
       });
-      console.log(token);
+      console.log(data);
     };
 
     updateAccessToken();
-  }, []);
+  }, [router]);
 
   // if (code) {
   //   notion.setCode(code);

@@ -6,26 +6,30 @@ export default async function accessTokenAPI(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log(req.body);
   const { code } = req.body;
-  // const code = req.param.code;
-  // const encoded = Buffer.from(
-  //   `${ENV.OAUTH_CLIENT_ID}:${ENV.OAUTH_CLIENT_SECRET}`
-  // ).toString("base64");
-  // const response = await axios.post("https://api.notion.com/v1/oauth/token", {
-  //   headers: {
-  //     Accept: "application/json",
-  //     "Content-Type": "application/json",
-  //     Authorization: `Basic ${encoded}`,
-  //   },
-  //   body: {
-  //     grant_type: "authorization_code",
-  //     code,
-  //     redirect_uri: "/auth-redirect",
-  //   },
-  // });
+  const encoded = btoa(`${ENV.OAUTH_CLIENT_ID}:${ENV.OAUTH_CLIENT_SECRET}`);
 
-  // return response.data;
-
-  res.status(200).json({ test: code, test2: "a" });
+  try {
+    const response = await axios.post(
+      "https://api.notion.com/v1/oauth/token",
+      {
+        grant_type: "authorization_code",
+        code,
+        // redirect_uri: "https://new-blog-web-prototype.vercel.app/auth-redirect",
+      },
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Basic ${encoded}`,
+        },
+      }
+    );
+    console.log(response);
+    res.status(200).json({ test: code, test2: "a" });
+  } catch (err) {
+    console.log("goto err?");
+    console.log(err);
+    res.status(400).json(err);
+  }
 }
