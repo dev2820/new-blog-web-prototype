@@ -17,7 +17,7 @@ export default async function accessTokenAPI(
       {
         grant_type: "authorization_code",
         code,
-        redirect_uri: "https://new-blog-web-prototype.vercel.app/@dev2820",
+        redirect_uri: "/auth-redirect",
       },
       {
         headers: {
