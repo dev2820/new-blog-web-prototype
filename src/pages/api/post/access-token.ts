@@ -26,5 +26,5 @@ export default async function accessTokenAPI(
 
   // return response.data;
 
-  return "a";
+  return req;
 }

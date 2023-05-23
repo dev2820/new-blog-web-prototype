@@ -12,7 +12,7 @@ export default function AuthRedirectPage() {
 
   useEffect(() => {
     const updateAccessToken = async () => {
-      const token = axios.post("/api/access-token", {
+      const token = await axios.post("/api/access-token", {
         body: {
           code,
         },
