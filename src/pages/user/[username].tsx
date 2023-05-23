@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { ENV } from "@/constants";
 
 export default function UserPage() {
   const { query = {} } = useRouter();
@@ -19,6 +20,7 @@ export default function UserPage() {
   return (
     <div>
       <h1>here is user page for {username || "???"}</h1>
+      <a href={ENV.NOTION_AUTH_URL}>notion auth</a>
       <ul>
         {posts.map((post: any, index: number) => (
           <li key={index}>
