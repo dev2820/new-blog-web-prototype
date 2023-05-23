@@ -19,19 +19,17 @@ export default function AuthRedirectPage() {
         const { data } = await axios.post("/api/post/access-token", {
           code,
         });
-        console.log(data);
+
+        const { access_token } = data;
+        notion.setAccessToken(access_token);
+        router.push("/@dev2820");
       } catch (err) {
         console.log(err);
       }
     };
 
     updateAccessToken();
-  }, [router]);
-
-  // if (code) {
-  //   notion.setCode(code);
-  //   router.push(`/@dev2820`);
-  // }
+  }, [notion, router]);
 
   return <h1>loading...</h1>;
 }

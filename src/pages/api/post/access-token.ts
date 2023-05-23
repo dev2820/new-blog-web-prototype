@@ -12,7 +12,7 @@ export default async function accessTokenAPI(
   ).toString("base64");
 
   try {
-    const response = await axios.post(
+    const { data } = await axios.post(
       "https://api.notion.com/v1/oauth/token",
       {
         grant_type: "authorization_code",
@@ -26,7 +26,7 @@ export default async function accessTokenAPI(
       }
     );
 
-    res.status(200).json({ accessToken: response.data.access_token });
+    res.status(200).json({ ...data });
   } catch (err) {
     res.status(400).json(err);
   }

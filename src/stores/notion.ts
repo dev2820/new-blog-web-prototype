@@ -5,8 +5,14 @@ const notionCodeState = atom<string>({
   default: "",
 });
 
+const accessTokenState = atom<string>({
+  key: "accessTokenState",
+  default: "",
+});
+
 export const useNotion = () => {
   const [notionCode, setNotionCode] = useRecoilState(notionCodeState);
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
 
   const setCode = (code: string) => {
     setNotionCode(code);
@@ -14,6 +20,7 @@ export const useNotion = () => {
 
   return {
     setCode,
+    setAccessToken,
     notionCode,
   };
 };
