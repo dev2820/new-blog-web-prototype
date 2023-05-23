@@ -7,7 +7,9 @@ export default async function accessTokenAPI(
   res: NextApiResponse
 ) {
   const { code } = req.body;
-  const encoded = btoa(`${ENV.OAUTH_CLIENT_ID}:${ENV.OAUTH_CLIENT_SECRET}`);
+  const encoded = Buffer.from(
+    `${ENV.OAUTH_CLIENT_ID}:${ENV.OAUTH_CLIENT_SECRET}`
+  ).toString("base64");
 
   try {
     const response = await axios.post(
@@ -15,21 +17,18 @@ export default async function accessTokenAPI(
       {
         grant_type: "authorization_code",
         code,
-        // redirect_uri: "https://new-blog-web-prototype.vercel.app/auth-redirect",
+        redirect_uri: "https://new-blog-web-prototype.vercel.app/@dev2820",
       },
       {
         headers: {
-          Accept: "application/json",
           "Content-Type": "application/json",
           Authorization: `Basic ${encoded}`,
         },
       }
     );
-    console.log(response);
-    res.status(200).json({ test: code, test2: "a" });
+
+    res.status(200).json({ accessToken: response.data.access_token });
   } catch (err) {
-    console.log("goto err?");
-    console.log(err);
     res.status(400).json(err);
   }
 }
