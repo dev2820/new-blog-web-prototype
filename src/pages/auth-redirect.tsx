@@ -15,10 +15,14 @@ export default function AuthRedirectPage() {
     if (!code) return;
 
     const updateAccessToken = async () => {
-      const { data } = await axios.post("/api/post/access-token", {
-        code,
-      });
-      console.log(data);
+      try {
+        const { data } = await axios.post("/api/post/access-token", {
+          code,
+        });
+        console.log(data);
+      } catch (err) {
+        console.log(err.response.data);
+      }
     };
 
     updateAccessToken();

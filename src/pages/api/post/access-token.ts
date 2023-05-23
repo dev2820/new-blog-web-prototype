@@ -17,11 +17,10 @@ export default async function accessTokenAPI(
       {
         grant_type: "authorization_code",
         code,
-        redirect_uri: "/auth-redirect",
+        redirect_uri: "https://new-blog-web-prototype.vercel.app/auth-redirect",
       },
       {
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Basic ${encoded}`,
         },
       }
@@ -29,6 +28,6 @@ export default async function accessTokenAPI(
 
     res.status(200).json({ accessToken: response.data.access_token });
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json(err.response.data);
   }
 }
