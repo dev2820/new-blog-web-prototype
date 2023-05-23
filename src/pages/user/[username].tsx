@@ -12,12 +12,12 @@ export default function UserPage() {
 
   useEffect(() => {
     const updatePosts = async () => {
-      const _posts = await fetchPosts(username as string, notion.notionCode);
+      const _posts = await fetchPosts(username as string, notion.accessToken);
       setPosts(_posts);
     };
 
     updatePosts();
-  }, [notion.notionCode, username]);
+  }, [notion.accessToken, username]);
 
   return (
     <div>
@@ -33,9 +33,11 @@ export default function UserPage() {
     </div>
   );
 }
-async function fetchPosts(username: string, code: string) {
+async function fetchPosts(username: string, accessToken: string) {
   try {
-    const { data } = await axios.get(`/api/post/${username}`);
+    const { data } = await axios.post(`/api/post/${username}`, {
+      accessToken,
+    });
     return data;
   } catch {
     return [];

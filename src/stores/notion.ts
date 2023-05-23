@@ -21,6 +21,7 @@ export const useNotion = () => {
   return {
     setCode,
     setAccessToken,
+    accessToken,
     notionCode,
   };
 };

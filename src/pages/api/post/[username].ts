@@ -6,8 +6,8 @@ export default async function postAPI(
   res: NextApiResponse
 ) {
   try {
-    const { username } = req.query;
-    const { results } = await notion.getPageList(username as string);
+    const { accessToken } = req.body;
+    const { results } = await notion.getPageList(accessToken);
 
     res.status(200).json(results);
   } catch {
