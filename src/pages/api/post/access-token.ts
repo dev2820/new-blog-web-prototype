@@ -6,7 +6,8 @@ export default async function accessTokenAPI(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log(req);
+  console.log("debug", req.body.code);
+  const code = req.body.code;
   // const code = req.param.code;
   // const encoded = Buffer.from(
   //   `${ENV.OAUTH_CLIENT_ID}:${ENV.OAUTH_CLIENT_SECRET}`
@@ -26,5 +27,5 @@ export default async function accessTokenAPI(
 
   // return response.data;
 
-  res.status(400).end(req.toString());
+  res.status(200).json({ test: code });
 }

@@ -17,7 +17,7 @@ export default function UserPage() {
     };
 
     updatePosts();
-  }, [username]);
+  }, [notion.notionCode, username]);
 
   return (
     <div>
