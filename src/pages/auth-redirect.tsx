@@ -40,7 +40,7 @@ async function getAccessToken(code: string) {
     body: {
       grant_type: "authorization_code",
       code,
-      redirect_uri: "/@dev2820",
+      redirect_uri: "/auth-redirect",
     },
   });
 
