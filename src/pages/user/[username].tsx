@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useNotion } from "@/stores/notion";
 import axios from "axios";
 import { ENV } from "@/constants";
 
 export default function UserPage() {
   const { query = {} } = useRouter();
+  const notion = useNotion();
   const [posts, setPosts] = useState<any>([]);
   const username = query.username;
 
+  console.log(notion.notionCode);
+
   useEffect(() => {
-    console.log("effect!");
     const updatePosts = async () => {
       const _posts = await fetchPosts(username as string);
       setPosts(_posts);
