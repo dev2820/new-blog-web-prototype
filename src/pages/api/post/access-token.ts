@@ -28,6 +28,6 @@ export default async function accessTokenAPI(
 
     res.status(200).json({ accessToken: response.data.access_token });
   } catch (err) {
-    res.status(400).json(err.response.data);
+    res.status(400).json(err);
   }
 }
