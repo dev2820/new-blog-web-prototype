@@ -8,6 +8,10 @@ export default function AuthRedirectPage() {
   const notion = useNotion();
   const code = router.query.code as string;
 
-  notion.setCode(code);
-  redirect(`/@${user.profile.name}`);
+  if (code) {
+    notion.setCode(code);
+    redirect(`/@${user.profile.name}`);
+  }
+
+  return <h1>loading...</h1>;
 }
