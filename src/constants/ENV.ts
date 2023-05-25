@@ -2,3 +2,4 @@ export const NOTION_API_KEY = process.env.NEXT_PUBLIC_NOTION_API_KEY;
 export const NOTION_AUTH_URL = process.env.NEXT_PUBLIC_NOTION_AUTH_URL;
 export const OAUTH_CLIENT_ID = process.env.NEXT_PUBLIC_OAUTH_CLIENT_ID;
 export const OAUTH_CLIENT_SECRET = process.env.NEXT_PUBLIC_OAUTH_CLIENT_SECRET;
+export const GOOGLE_OAUTH_URL = process.env.NEXT_PUBLIC_OAUTH_URL;
