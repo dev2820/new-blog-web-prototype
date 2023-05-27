@@ -6,7 +6,9 @@ import { newBlogAPI } from "@/utils/new-blog";
 export default function LoginPage() {
   const router = useRouter();
   const { isAuthenticated, requestLogin } = useUser();
-
+  const handleGoogleLogin = () => {
+    window.location.assign("api/auth/google");
+  };
   useEffect(() => {
     if (isAuthenticated) {
       router.push("/");
@@ -17,7 +19,7 @@ export default function LoginPage() {
     <>
       <h1>login</h1>
       <button onClick={requestLogin}>login</button>
-      <a href="/auth/google">google oauth</a>
+      <button onClick={handleGoogleLogin}>google oauth</button>
     </>
   );
 }
