@@ -7,16 +7,6 @@ export default function LoginPage() {
   const router = useRouter();
   const { isAuthenticated, requestLogin } = useUser();
 
-  const handleLogin = async () => {
-    try {
-      const response = await newBlogAPI("/auth/google");
-      const { url } = await response.data;
-      window.location.href = url;
-    } catch (err) {
-      console.error("Error!", err);
-    }
-  };
-
   useEffect(() => {
     if (isAuthenticated) {
       router.push("/");
@@ -27,7 +17,7 @@ export default function LoginPage() {
     <>
       <h1>login</h1>
       <button onClick={requestLogin}>login</button>
-      <button onClick={handleLogin}>google oauth</button>
+      <a href="/auth/google">google oauth</a>
     </>
   );
 }
