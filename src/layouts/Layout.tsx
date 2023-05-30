@@ -20,10 +20,9 @@ const Layout = ({ children }: PropsWithChildren) => {
             <Image
               src={user.profile.avator}
               alt="avator"
-              width={100}
-              height={100}
+              width={64}
+              height={64}
             ></Image>
-            <img src={user.profile.avator}></img>
           </>
         )}
       </header>
