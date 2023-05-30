@@ -8,6 +8,7 @@ import Image from "next/image";
 
 const Layout = ({ children }: PropsWithChildren) => {
   const user = useUser();
+  console.log(user.profile.avator, decodeURI(user.profile.avator));
   return (
     <div>
       <header>
@@ -17,6 +18,7 @@ const Layout = ({ children }: PropsWithChildren) => {
           <>
             <div>{user.profile.name}</div>
             <Image src={decodeURI(user.profile.avator)} alt="avator"></Image>
+            <img src={user.profile.avator}></img>
           </>
         )}
       </header>
