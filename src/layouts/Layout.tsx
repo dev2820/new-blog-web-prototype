@@ -11,7 +11,7 @@ const Layout = ({ children }: PropsWithChildren) => {
   return (
     <div>
       <header>
-        {user.profile.name !== "" ? (
+        {user.profile.name === "" ? (
           <LoginButton></LoginButton>
         ) : (
           <>
