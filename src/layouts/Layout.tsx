@@ -16,7 +16,7 @@ const Layout = ({ children }: PropsWithChildren) => {
         ) : (
           <>
             <div>{user.profile.name}</div>
-            <Image src={user.profile.avator} alt="avator"></Image>
+            <Image src={decodeURI(user.profile.avator)} alt="avator"></Image>
           </>
         )}
       </header>
