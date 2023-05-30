@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useUser } from "@/stores/user";
+import Layout from "@/layouts/Layout";
 
 export default function HomePage() {
   const { isAuthenticated, profile } = useUser();
@@ -8,10 +9,10 @@ export default function HomePage() {
     profile,
   };
   return (
-    <>
+    <Layout>
       <h1>Home</h1>
       <Account loginInfo={loginInfo}></Account>
-    </>
+    </Layout>
   );
 }
 
