@@ -17,12 +17,16 @@ const Layout = ({ children }: PropsWithChildren) => {
         ) : (
           <>
             <div>{user.profile.name}</div>
-            <Image src={decodeURI(user.profile.avator)} alt="avator"></Image>
+            <Image
+              src={user.profile.avator}
+              alt="avator"
+              width={100}
+              height={100}
+            ></Image>
             <img src={user.profile.avator}></img>
           </>
         )}
       </header>
-
       <main>{children}</main>
 
       <footer>{/* Footer content */}</footer>
