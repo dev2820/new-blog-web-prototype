@@ -3,14 +3,14 @@ import { useUser } from "@/stores/user";
 
 export default function LoginPage() {
   const router = useRouter();
-  const { isAuthenticated, requestLogin } = useUser();
+  const { profile } = useUser();
 
   const handleGoogleLogin = () => {
     localStorage.setItem("prevUrl", router.route);
     window.location.assign(`api/auth/google?callbackUrl=${router.pathname}`);
   };
 
-  if (isAuthenticated) return <AlreadyLogined></AlreadyLogined>;
+  if (profile.name) return <AlreadyLogined></AlreadyLogined>;
   return <NotLogined handleGoogleLogin={handleGoogleLogin}></NotLogined>;
 }
 
