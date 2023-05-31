@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const Layout = ({ children }: PropsWithChildren) => {
   const user = useUser();
-  console.log(user.profile.avator, decodeURI(user.profile.avator));
+
   return (
     <div>
       <header>
