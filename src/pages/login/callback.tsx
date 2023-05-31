@@ -20,7 +20,7 @@ export default function CallbackPage() {
     if (prevUrl) {
       router.replace(prevUrl, undefined, { shallow: true });
     }
-  }, [router]);
+  }, [router.query]);
 
   return <p>wait...</p>;
 }
