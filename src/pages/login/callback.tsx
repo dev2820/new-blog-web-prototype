@@ -18,7 +18,7 @@ export default function CallbackPage() {
     const prevUrl = sessionStorage.getItem("prevUrl");
 
     if (prevUrl) {
-      router.replace(prevUrl);
+      router.replace(prevUrl, undefined, { shallow: true });
     }
   }, [router]);
 
