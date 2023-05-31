@@ -9,7 +9,7 @@ export default function CallbackPage() {
 
   useEffect(() => {
     const { username, avator, token } = router.query;
-    console.log(token);
+
     user.setProfile({
       name: String(username),
       avator: String(avator),
