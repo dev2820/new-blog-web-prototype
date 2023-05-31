@@ -9,11 +9,11 @@ export default function CallbackPage() {
   useEffect(() => {
     const { username, avator, token } = router.query;
     user.setProfile({
-      name: username as string,
-      avator: avator as string,
+      name: String(username),
+      avator: String(avator),
     });
     sessionStorage.setItem("new-blog-token", String(token));
-    const prevUrl = localStorage.getItem("prevUrl");
+    const prevUrl = sessionStorage.getItem("prevUrl");
 
     if (prevUrl) {
       router.replace(prevUrl);
