@@ -1,23 +1,24 @@
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useUser } from "@/stores/user";
-import { useEffect } from "react";
 
 export default function CallbackPage() {
   const router = useRouter();
-  const { setProfile } = useUser();
+  const user = useUser();
 
   useEffect(() => {
-    const { username, avator } = router.query;
-    setProfile({
+    const { username, avator, token } = router.query;
+    user.setProfile({
       name: username as string,
       avator: avator as string,
     });
+    sessionStorage.setItem("new-blog-token", String(token));
     const prevUrl = localStorage.getItem("prevUrl");
 
     if (prevUrl) {
       router.replace(prevUrl);
     }
-  }, [router, setProfile]);
+  }, [router, user]);
 
   return <p>wait...</p>;
 }
