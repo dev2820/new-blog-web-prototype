@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useUser } from "@/stores/user";
@@ -19,7 +20,7 @@ export default function CallbackPage() {
     if (prevUrl) {
       router.replace(prevUrl);
     }
-  }, [router, user]);
+  }, [router]);
 
   return <p>wait...</p>;
 }
