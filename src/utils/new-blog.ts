@@ -28,9 +28,9 @@ newBlogAPI.interceptors.response.use(
       const res = await newBlogAPI.get("/auth/update-token");
       console.log(res);
     }
-    if (error.response.status === HttpStatusCode.Forbidden) {
-      window.location.href = "/login";
-    }
+    // if (error.response.status === HttpStatusCode.Forbidden) {
+    //   window.location.href = "/login";
+    // }
 
     return Promise.reject(error);
   }
