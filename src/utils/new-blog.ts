@@ -24,9 +24,13 @@ newBlogAPI.interceptors.response.use(
     return response;
   },
   async (error) => {
-    if (error.response.status === HttpStatusCode.Unauthorized) {
-      const res = await newBlogAPI.get("/auth/update-token");
-      console.log(res);
+    const {
+      config,
+      response: { status },
+    } = error;
+    if (status === HttpStatusCode.Unauthorized) {
+      await newBlogAPI.get("/auth/update-token");
+      return axios.request(config);
     }
     // if (error.response.status === HttpStatusCode.Forbidden) {
     //   window.location.href = "/login";
