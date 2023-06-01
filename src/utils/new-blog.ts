@@ -34,6 +34,7 @@ newBlogAPI.interceptors.response.use(
       } = await newBlogAPI.get("/auth/update-token");
 
       const newToken = authorization.split(" ")[1];
+      console.log("new?", newToken);
       localStorage.setItem("new-blog-token", newToken);
       return axios.request(config);
     }
