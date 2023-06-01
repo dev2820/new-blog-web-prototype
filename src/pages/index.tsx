@@ -6,7 +6,6 @@ import { newBlogAPI } from "@/utils";
 export default function HomePage() {
   const testFunc = async () => {
     const response = await newBlogAPI.get("https://new-blog.store/api/user");
-    console.log(response);
   };
   return (
     <Layout>
