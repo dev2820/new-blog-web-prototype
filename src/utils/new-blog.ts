@@ -37,9 +37,9 @@ newBlogAPI.interceptors.response.use(
       config.headers.Authorization = `Bearer ${newToken}`;
       return axios.request(config);
     }
-    // if (error.response.status === HttpStatusCode.Forbidden) {
-    //   window.location.href = "/login";
-    // }
+    if (error.response.status === HttpStatusCode.Forbidden) {
+      window.location.href = "/login";
+    }
 
     return Promise.reject(error);
   }
