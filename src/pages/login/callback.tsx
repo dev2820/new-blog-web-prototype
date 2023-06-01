@@ -14,7 +14,7 @@ export default function CallbackPage() {
       name: String(username),
       avator: String(avator),
     });
-    sessionStorage.setItem("new-blog-token", String(token));
+    localStorage.setItem("new-blog-token", String(token));
     const prevUrl = sessionStorage.getItem("prevUrl");
 
     if (prevUrl) {

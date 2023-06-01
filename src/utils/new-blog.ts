@@ -6,7 +6,7 @@ export const newBlogAPI = axios.create({
 
 newBlogAPI.interceptors.request.use(
   (config) => {
-    const token = sessionStorage.getItem("new-blog-token");
+    const token = localStorage.getItem("new-blog-token");
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -32,7 +32,9 @@ newBlogAPI.interceptors.response.use(
       const {
         headers: { authorization },
       } = await newBlogAPI.get("/auth/update-token");
-      console.log(authorization);
+
+      const newToken = authorization.split(" ")[1];
+      localStorage.setItem("new-blog-token", newToken);
       return axios.request(config);
     }
     // if (error.response.status === HttpStatusCode.Forbidden) {
