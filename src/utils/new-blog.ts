@@ -23,9 +23,9 @@ newBlogAPI.interceptors.response.use(
   (response) => {
     return response;
   },
-  (error) => {
+  async (error) => {
     if (error.response.status === HttpStatusCode.Unauthorized) {
-      const res = newBlogAPI.get("/auth/refresh");
+      const res = await newBlogAPI.get("/auth/refresh");
       console.log(res);
     }
     if (error.response.status === HttpStatusCode.Forbidden) {
