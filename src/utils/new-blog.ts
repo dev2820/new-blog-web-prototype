@@ -35,6 +35,9 @@ newBlogAPI.interceptors.response.use(
       const newToken = authorization.split(" ")[1];
       localStorage.setItem("new-blog-token", newToken);
       config.headers.Authorization = `Bearer ${newToken}`;
+      /**
+       * 재귀 요청 일어나지 않게 후처리 필요
+       */
       return axios.request(config);
     }
     if (error.response.status === HttpStatusCode.Forbidden) {
