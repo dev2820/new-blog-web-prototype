@@ -34,8 +34,8 @@ newBlogAPI.interceptors.response.use(
       } = await newBlogAPI.get("/auth/update-token");
 
       const newToken = authorization.split(" ")[1];
-      console.log("new?", newToken);
       localStorage.setItem("new-blog-token", newToken);
+      config.headers.Authorization = `Bearer ${newToken}`;
       return axios.request(config);
     }
     // if (error.response.status === HttpStatusCode.Forbidden) {
