@@ -18,3 +18,12 @@ newBlogAPI.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
+newBlogAPI.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    console.log(error);
+  }
+);
