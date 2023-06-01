@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { HttpStatusCode } from "axios";
 
 export const newBlogAPI = axios.create({
   baseURL: "/api",
@@ -24,6 +24,14 @@ newBlogAPI.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.log(error);
+    if (error.response.status === HttpStatusCode.Unauthorized) {
+      const res = newBlogAPI.get("/auth/refresh");
+      console.log(res);
+    }
+    if (error.response.status === HttpStatusCode.Forbidden) {
+      window.location.href = "/login";
+    }
+
+    return Promise.reject(error);
   }
 );
