@@ -15,7 +15,6 @@ newBlogAPI.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.log("im in request");
     return Promise.reject(error);
   }
 );
@@ -25,7 +24,6 @@ newBlogAPI.interceptors.response.use(
     return response;
   },
   async (error) => {
-    console.log("im in response");
     if (error.response.status === HttpStatusCode.Unauthorized) {
       const res = await newBlogAPI.get("/auth/refresh");
       console.log(res);
