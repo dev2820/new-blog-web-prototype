@@ -1,6 +1,8 @@
 import { atom, useRecoilState } from "recoil";
+import { newBlogAPI } from "@/utils";
 
-const profileState = atom<{ name: string; avator: string }>({
+type Profile = { name: string; avator: string };
+const profileState = atom<Profile>({
   key: "profileState",
   default: {
     name: "",
@@ -10,15 +12,23 @@ const profileState = atom<{ name: string; avator: string }>({
 
 export const useUser = () => {
   const [profile, setProfile] = useRecoilState(profileState);
-  const clear = () => {
+  const clearProfile = () => {
     setProfile({
       name: "",
       avator: "",
     });
   };
+  const fetchProfile = async () => {
+    const { data: _profile } = await newBlogAPI.get<Profile>("/user");
+    // setProfile({
+    //   name: _profile.name,
+    //   avator: _profile.avator,
+    // });
+  };
   return {
     profile,
     setProfile,
-    clear,
+    fetchProfile,
+    clearProfile,
   };
 };

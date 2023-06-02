@@ -1,19 +1,30 @@
-import React, { PropsWithChildren } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { PropsWithChildren, useEffect } from "react";
 import LoginButton from "@/components/LoginButton";
 import Modal from "@/components/Modal";
 import { useUser } from "@/stores/user";
 import LoginPage from "@/pages/login";
 import Image from "next/image";
-import { newBlogAPI } from "@/utils";
+import { isNil, newBlogAPI } from "@/utils";
 
 const Layout = ({ children }: PropsWithChildren) => {
   const user = useUser();
+
   const handleLogout = async () => {
     await newBlogAPI.get("/auth/logout");
     sessionStorage.removeItem("prevUrl");
     localStorage.removeItem("new-blog-token");
-    user.clear();
+    user.clearProfile();
   };
+
+  useEffect(() => {
+    if (
+      isNil(user.profile.name) ||
+      !isNil(localStorage.getItem("new-blog-token"))
+    ) {
+      user.fetchProfile();
+    }
+  }, []);
 
   return (
     <div>
