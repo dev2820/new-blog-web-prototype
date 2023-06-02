@@ -5,7 +5,11 @@ import { newBlogAPI } from "@/utils";
 
 export default function HomePage() {
   const testFunc = async () => {
-    const response = await newBlogAPI.get("https://new-blog.store/api/user");
+    try {
+      const response = await newBlogAPI.get("https://new-blog.store/api/user");
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <Layout>

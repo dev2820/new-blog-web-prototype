@@ -1,4 +1,5 @@
 import axios, { HttpStatusCode } from "axios";
+import { MESSAGE } from "@/constants";
 
 export const newBlogAPI = axios.create({
   baseURL: "/api",
@@ -40,8 +41,8 @@ newBlogAPI.interceptors.response.use(
        */
       return axios.request(config);
     }
-    if (error.response.status === HttpStatusCode.Forbidden) {
-      window.location.href = "/login";
+    if (status === HttpStatusCode.Forbidden) {
+      return Promise.reject(MESSAGE.LOGIN_AGAIN);
     }
 
     return Promise.reject(error);
