@@ -10,9 +10,15 @@ const profileState = atom<{ name: string; avator: string }>({
 
 export const useUser = () => {
   const [profile, setProfile] = useRecoilState(profileState);
-
+  const clear = () => {
+    setProfile({
+      name: "",
+      avator: "",
+    });
+  };
   return {
     profile,
     setProfile,
+    clear,
   };
 };

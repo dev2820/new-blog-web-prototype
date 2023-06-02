@@ -1,13 +1,19 @@
 import React, { PropsWithChildren } from "react";
 import LoginButton from "@/components/LoginButton";
 import Modal from "@/components/Modal";
-import { useModal } from "@/stores/modal";
 import { useUser } from "@/stores/user";
 import LoginPage from "@/pages/login";
 import Image from "next/image";
+import { newBlogAPI } from "@/utils";
 
 const Layout = ({ children }: PropsWithChildren) => {
   const user = useUser();
+  const handleLogout = async () => {
+    await newBlogAPI.get("/auth/logout");
+    sessionStorage.removeItem("prevUrl");
+    localStorage.removeItem("new-blog-token");
+    user.clear();
+  };
 
   return (
     <div>
@@ -23,6 +29,7 @@ const Layout = ({ children }: PropsWithChildren) => {
               width={64}
               height={64}
             ></Image>
+            <button onClick={handleLogout}>logout</button>
           </>
         )}
       </header>
