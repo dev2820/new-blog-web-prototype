@@ -8,13 +8,10 @@ export default function CallbackPage() {
   const user = useUser();
 
   useEffect(() => {
-    const { username, avator, token } = router.query;
-
-    user.setProfile({
-      name: String(username),
-      avator: String(avator),
-    });
+    const { token } = router.query;
     localStorage.setItem("new-blog-token", String(token));
+
+    user.fetchProfile();
     const prevUrl = sessionStorage.getItem("prevUrl");
 
     if (prevUrl) {
