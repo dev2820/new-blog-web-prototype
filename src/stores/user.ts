@@ -20,6 +20,7 @@ export const useUser = () => {
   };
   const fetchProfile = async () => {
     const { data: _profile } = await newBlogAPI.get<Profile>("/user");
+    console.log(_profile);
     // setProfile({
     //   name: _profile.name,
     //   avator: _profile.avator,
