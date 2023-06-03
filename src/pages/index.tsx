@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useUser } from "@/stores/user";
 import Layout from "@/layouts/Layout";
-import { newBlogAPI } from "@/utils";
 
 export default function HomePage() {
   const user = useUser();
