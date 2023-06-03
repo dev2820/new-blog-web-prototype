@@ -26,7 +26,9 @@ export default function UserPage() {
   return (
     <div>
       <h1>here is user page for {username || "???"}</h1>
-      <a onClick={handleLinkNotion}>link notion</a>
+      <a onClick={handleLinkNotion}>
+        <button>link notion</button>
+      </a>
       <ul>
         {posts.map((post: any, index: number) => (
           <li key={index}>
