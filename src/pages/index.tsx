@@ -4,17 +4,14 @@ import Layout from "@/layouts/Layout";
 import { newBlogAPI } from "@/utils";
 
 export default function HomePage() {
-  const testFunc = async () => {
-    try {
-      const response = await newBlogAPI.get("https://new-blog.store/api/user");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const user = useUser();
+
   return (
     <Layout>
       <h1>Home</h1>
-      <button onClick={testFunc}>work if authorized</button>
+      {user.profile.name && (
+        <Link href={`/@${user.profile.name}`}>go to user page</Link>
+      )}
     </Layout>
   );
 }
