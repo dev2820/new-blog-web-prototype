@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useNotion } from "@/stores/notion";
 import axios from "axios";
 import { ENV } from "@/constants";
+import { newBlogAPI } from "@/utils";
 
 export default function UserPage() {
   const { query = {} } = useRouter();
@@ -10,19 +11,22 @@ export default function UserPage() {
   const [posts, setPosts] = useState<any>([]);
   const username = query.username;
 
-  useEffect(() => {
-    const updatePosts = async () => {
-      const _posts = await fetchPosts(username as string, notion.accessToken);
-      setPosts(_posts);
-    };
+  const handleLinkNotion = async () => {
+    window.location.assign(`api/link/notion`);
+  };
+  // useEffect(() => {
+  //   const updatePosts = async () => {
+  //     const _posts = await fetchPosts(username as string, notion.accessToken);
+  //     setPosts(_posts);
+  //   };
 
-    updatePosts();
-  }, [notion.accessToken, username]);
+  //   updatePosts();
+  // }, [notion.accessToken, username]);
 
   return (
     <div>
       <h1>here is user page for {username || "???"}</h1>
-      <a href={ENV.NOTION_AUTH_URL}>notion auth</a>
+      <a onClick={handleLinkNotion}>link notion</a>
       <ul>
         {posts.map((post: any, index: number) => (
           <li key={index}>
