@@ -26,10 +26,15 @@ export const useUser = () => {
       avator: _profile.avator,
     });
   };
+
+  const isEmpty = () => {
+    return profile.name === "" && profile.avator === "";
+  };
   return {
     profile,
     setProfile,
     fetchProfile,
     clearProfile,
+    isEmpty,
   };
 };
