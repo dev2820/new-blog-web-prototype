@@ -12,7 +12,6 @@ export default function CallbackPage() {
      * code를 전송해 등록하게 만든다.
      */
     const { code } = router.query;
-    console.log(code);
     if (!code) return;
     registCode(String(code), router);
   }, [router.query]);
@@ -21,7 +20,6 @@ export default function CallbackPage() {
 }
 
 const registCode = async (code: string, router: NextRouter) => {
-  console.log(code);
   await newBlogAPI.post(
     "/link/notion/regist-code",
     { code },

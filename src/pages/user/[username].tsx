@@ -12,8 +12,14 @@ export default function UserPage() {
   const username = query.username;
 
   const handleLinkNotion = async () => {
+    console.log(route);
     sessionStorage.setItem("prevUrl", route);
     window.location.assign(`api/link/notion`);
+  };
+
+  const handleCallDocs = async () => {
+    const docs = await newBlogAPI.get("/user/document");
+    console.log(docs);
   };
   // useEffect(() => {
   //   const updatePosts = async () => {
@@ -30,6 +36,7 @@ export default function UserPage() {
       <a onClick={handleLinkNotion}>
         <button>link notion</button>
       </a>
+      <button onClick={handleCallDocs}>call documents</button>
       <ul>
         {posts.map((post: any, index: number) => (
           <li key={index}>
