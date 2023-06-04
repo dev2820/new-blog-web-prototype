@@ -6,12 +6,13 @@ import { ENV } from "@/constants";
 import { newBlogAPI } from "@/utils";
 
 export default function UserPage() {
-  const { query = {} } = useRouter();
+  const { query = {}, route } = useRouter();
   const notion = useNotion();
   const [posts, setPosts] = useState<any>([]);
   const username = query.username;
 
   const handleLinkNotion = async () => {
+    sessionStorage.setItem("prevUrl", route);
     window.location.assign(`api/link/notion`);
   };
   // useEffect(() => {

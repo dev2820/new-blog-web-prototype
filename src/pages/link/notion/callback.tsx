@@ -1,24 +1,29 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter, NextRouter } from "next/router";
 import { useUser } from "@/stores/user";
+import { newBlogAPI } from "@/utils";
 
 export default function CallbackPage() {
   const router = useRouter();
-  const user = useUser();
 
   useEffect(() => {
-    const { token } = router.query;
-    localStorage.setItem("document-token", String(token));
-
-    user.fetchProfile();
-    // const prevUrl = sessionStorage.getItem("prevUrl");
-
-    // if (prevUrl) {
-    //   router.replace(prevUrl);
-    //   sessionStorage.setItem("prevUrl", "");
-    // }
+    /**
+     * code를 전송해 등록하게 만든다.
+     */
+    const { code } = router.query;
+    registCode(String(code), router);
   }, [router.query]);
 
   return <p>let me do it for you...</p>;
 }
+
+const registCode = async (code: string, router: NextRouter) => {
+  await newBlogAPI.post("/link/notion/regist-code", { code });
+  const prevUrl = sessionStorage.getItem("prevUrl");
+
+  if (prevUrl) {
+    router.replace(prevUrl);
+    sessionStorage.setItem("prevUrl", "");
+  }
+};
