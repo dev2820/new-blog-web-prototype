@@ -22,7 +22,15 @@ export default function CallbackPage() {
 
 const registCode = async (code: string, router: NextRouter) => {
   console.log(code);
-  await newBlogAPI.post("/link/notion/regist-code", { code });
+  await newBlogAPI.post(
+    "/link/notion/regist-code",
+    { code },
+    {
+      headers: {
+        "content-type": "application/json",
+      },
+    }
+  );
   const prevUrl = sessionStorage.getItem("prevUrl");
 
   if (prevUrl) {
