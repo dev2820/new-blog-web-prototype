@@ -12,8 +12,10 @@ export default function CallbackPage() {
      * code를 전송해 등록하게 만든다.
      */
     const { code } = router.query;
+    console.log(code);
+    if (!code) return;
     registCode(String(code), router);
-  }, [router.query]);
+  }, [router]);
 
   return <p>let me do it for you...</p>;
 }
