@@ -15,7 +15,7 @@ export default function CallbackPage() {
     console.log(code);
     if (!code) return;
     registCode(String(code), router);
-  }, [router]);
+  }, [router.query]);
 
   return <p>let me do it for you...</p>;
 }
