@@ -8,14 +8,15 @@ import { newBlogAPI } from "@/utils";
 
 export default function UserPage() {
   const { query = {}, route } = useRouter();
+  const temp = useRouter();
   const notion = useNotion();
   const [posts, setPosts] = useState<any>([]);
   const username = query.username;
 
   const handleLinkNotion = async () => {
-    console.log(route);
+    console.log(route, temp);
     localStorage.setItem("prevUrl", route);
-    window.location.assign(`api/link/notion`);
+    // window.location.assign(`api/link/notion`);
   };
 
   return (
