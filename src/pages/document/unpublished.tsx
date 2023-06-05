@@ -6,7 +6,9 @@ import Link from "next/link";
 export default function UnpublishedPage() {
   const [docs, setDocs] = useState<any[]>([]);
   const callDocs = async () => {
-    const { data } = await newBlogAPI.get<{ results: any[] }>("/user/document");
+    const { data } = await newBlogAPI.get<{ results: any[] }>(
+      "/user/document/notion"
+    );
     const { results } = data;
     setDocs([...results]);
   };
@@ -21,7 +23,7 @@ export default function UnpublishedPage() {
       <ul>
         {docs.map((doc, index) => (
           <li key={index}>
-            <Link href={`/document/publish?id=${doc.id}`}>
+            <Link href={`/document/publish?provider=${"notion"}&id=${doc.id}`}>
               <Card>
                 <p>{"created: " + doc.created_time}</p>
                 <p>{"last_edited: " + doc.last_edited_time}</p>

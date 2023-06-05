@@ -6,9 +6,9 @@ import { useRouter } from "next/router";
 
 export default function PublishPage() {
   const { query } = useRouter();
-
   useEffect(() => {
-    console.log(query);
+    const { provider, id } = query;
+    fetchDocument(String(provider), String(id));
   }, [query]);
 
   return (
@@ -17,4 +17,9 @@ export default function PublishPage() {
       <article></article>
     </>
   );
+}
+
+async function fetchDocument(provider: string, id: string) {
+  const doc = await newBlogAPI.get(`/user/document/${provider}/${id}`);
+  console.log(doc);
 }
