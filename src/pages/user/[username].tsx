@@ -18,19 +18,13 @@ export default function UserPage() {
     window.location.assign(`api/link/notion`);
   };
 
-  const handleCallDocs = async () => {
-    const docs = await newBlogAPI.get("/user/document");
-    console.log(docs);
-  };
-
   return (
     <div>
       <h1>here is user page for {username || "???"}</h1>
       <a onClick={handleLinkNotion}>
         <button>link notion</button>
       </a>
-      <Link href={`${route}/unpublished`}>go to unpublished docs</Link>
-      <button onClick={handleCallDocs}>call documents</button>
+      <Link href={`/document/unpublished`}>go to unpublished docs</Link>
       <ul>
         {posts.map((post: any, index: number) => (
           <li key={index}>
