@@ -18,7 +18,11 @@ export default function UnpublishedPage() {
       <h2>unpublished</h2>
       <ul>
         {docs.map((doc, index) => (
-          <li key={index}>{doc.toString()}</li>
+          <li key={index}>
+            <p>{"created: " + doc.created_time}</p>
+            <p>{"last_edited: " + doc.last_edited_time}</p>
+            <h3>{doc.properties.title.title.text.plain_text}</h3>
+          </li>
         ))}
       </ul>
     </>
