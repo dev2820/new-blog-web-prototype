@@ -5,6 +5,7 @@ export default function UnpublishedPage() {
   const [docs, setDocs] = useState<any[]>([]);
   const handleCallDocs = async () => {
     const { data } = await newBlogAPI.get<{ results: any[] }>("/user/document");
+    console.log(data);
     const { results } = data;
     setDocs([...results]);
   };
