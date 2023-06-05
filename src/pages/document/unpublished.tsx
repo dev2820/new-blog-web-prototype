@@ -1,16 +1,21 @@
 import { newBlogAPI } from "@/utils";
 import { useEffect, useState } from "react";
+import Card from "@/components/Card";
 
 export default function UnpublishedPage() {
   const [docs, setDocs] = useState<any[]>([]);
-  const handleCallDocs = async () => {
+  const callDocs = async () => {
     const { data } = await newBlogAPI.get<{ results: any[] }>("/user/document");
     const { results } = data;
     setDocs([...results]);
   };
 
+  const handleClickCard = () => {
+    console.log("im clicked");
+  };
+
   useEffect(() => {
-    handleCallDocs();
+    callDocs();
   }, []);
 
   return (
@@ -19,9 +24,11 @@ export default function UnpublishedPage() {
       <ul>
         {docs.map((doc, index) => (
           <li key={index}>
-            <p>{"created: " + doc.created_time}</p>
-            <p>{"last_edited: " + doc.last_edited_time}</p>
-            <h3>{doc.properties.title.title[0].plain_text}</h3>
+            <Card onClick={handleClickCard}>
+              <p>{"created: " + doc.created_time}</p>
+              <p>{"last_edited: " + doc.last_edited_time}</p>
+              <h3>{doc.properties.title.title[0].plain_text}</h3>
+            </Card>
           </li>
         ))}
       </ul>
