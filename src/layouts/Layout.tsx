@@ -18,7 +18,7 @@ const Layout = ({ children }: PropsWithChildren) => {
   };
 
   useEffect(() => {
-    if (user.isEmpty() && !isNil(localStorage.getItem("new-blog-token"))) {
+    if (user.isEmpty() && localStorage.getItem("new-blog-token")) {
       user.fetchProfile();
     }
   }, []);

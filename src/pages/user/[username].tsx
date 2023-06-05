@@ -21,14 +21,6 @@ export default function UserPage() {
     const docs = await newBlogAPI.get("/user/document");
     console.log(docs);
   };
-  // useEffect(() => {
-  //   const updatePosts = async () => {
-  //     const _posts = await fetchPosts(username as string, notion.accessToken);
-  //     setPosts(_posts);
-  //   };
-
-  //   updatePosts();
-  // }, [notion.accessToken, username]);
 
   return (
     <div>
@@ -36,6 +28,7 @@ export default function UserPage() {
       <a onClick={handleLinkNotion}>
         <button>link notion</button>
       </a>
+      <Link href=
       <button onClick={handleCallDocs}>call documents</button>
       <ul>
         {posts.map((post: any, index: number) => (
