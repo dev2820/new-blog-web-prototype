@@ -21,7 +21,7 @@ export default function UnpublishedPage() {
           <li key={index}>
             <p>{"created: " + doc.created_time}</p>
             <p>{"last_edited: " + doc.last_edited_time}</p>
-            <h3>{doc.properties.title.title.text.plain_text}</h3>
+            <h3>{doc.properties.title.title[0].plain_text}</h3>
           </li>
         ))}
       </ul>
