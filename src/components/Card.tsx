@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
 
 type Props = PropsWithChildren<{
-  onClick: React.MouseEventHandler<HTMLDivElement>;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 }>;
 const Card = ({ children, onClick }: Props) => {
   return (
