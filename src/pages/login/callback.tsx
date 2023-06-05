@@ -12,11 +12,11 @@ export default function CallbackPage() {
     localStorage.setItem("new-blog-token", String(token));
 
     user.fetchProfile();
-    const prevUrl = sessionStorage.getItem("prevUrl");
+    const prevUrl = localStorage.getItem("prevUrl");
 
     if (prevUrl) {
       router.replace(prevUrl);
-      sessionStorage.setItem("prevUrl", "");
+      localStorage.setItem("prevUrl", "");
     }
   }, [router.query]);
 

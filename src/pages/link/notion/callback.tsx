@@ -29,10 +29,10 @@ const registCode = async (code: string, router: NextRouter) => {
       },
     }
   );
-  const prevUrl = sessionStorage.getItem("prevUrl");
+  const prevUrl = localStorage.getItem("prevUrl");
 
   if (prevUrl) {
     router.replace(prevUrl);
-    sessionStorage.setItem("prevUrl", "");
+    localStorage.setItem("prevUrl", "");
   }
 };

@@ -14,7 +14,7 @@ export default function UserPage() {
 
   const handleLinkNotion = async () => {
     console.log(route);
-    sessionStorage.setItem("prevUrl", route);
+    localStorage.setItem("prevUrl", route);
     window.location.assign(`api/link/notion`);
   };
 
