@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useNotion } from "@/stores/notion";
 import axios from "axios";
+import Link from "next/link";
 import { ENV } from "@/constants";
 import { newBlogAPI } from "@/utils";
 
@@ -28,7 +29,7 @@ export default function UserPage() {
       <a onClick={handleLinkNotion}>
         <button>link notion</button>
       </a>
-      <Link href=
+      <Link href={`${route}/unpublished`}>go to unpublished docs</Link>
       <button onClick={handleCallDocs}>call documents</button>
       <ul>
         {posts.map((post: any, index: number) => (
