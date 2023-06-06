@@ -46,27 +46,31 @@ const getElement = (block: any) => {
   }
   if (type === "paragraph") {
     return (
-      <Card>{`[${type}] ${block[type].rich_text.map(
-        (text: any, index: number) => (
+      <Card>
+        {`[${type}]`}
+        {block[type].rich_text.map((text: any, index: number) => (
           <span key={index}>{text.text.content}</span>
-        )
-      )}`}</Card>
+        ))}
+      </Card>
     );
   }
   if (type === "heading_2") {
     return (
-      <Card>{`[${type}] ${block[type].rich_text.map(
-        (text: any, index: number) => (
+      <Card>
+        {`[${type}]`}
+        {block[type].rich_text.map((text: any, index: number) => (
           <span key={index}>{text.text.content}</span>
-        )
-      )}`}</Card>
+        ))}
+      </Card>
     );
   }
   if (type === "heading_3") {
-    const text = block[type].rich_text.map((text: any, index: number) => (
-      <span key={index}>{text.text.content}</span>
-    ));
-    return <Card>{`[${type}] ${text}`}</Card>;
+    <Card>
+      {`[${type}]`}
+      {block[type].rich_text.map((text: any, index: number) => (
+        <span key={index}>{text.text.content}</span>
+      ))}
+    </Card>;
   }
   if (type === "image") {
     return (
