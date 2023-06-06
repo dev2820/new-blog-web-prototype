@@ -69,10 +69,12 @@ const getElement = (block: any) => {
     return <Card>{`[${type}] ${text}`}</Card>;
   }
   if (type === "image") {
-    const imgUrl = block[type].file.url;
     return (
       <Card>
-        <Image src={imgUrl} alt={"img"} width={64} height={64}></Image>
+        <Image
+          src={`data:image/png;base64,${block[type].file.base64}`}
+          alt="untitled"
+        />
       </Card>
     );
   }
