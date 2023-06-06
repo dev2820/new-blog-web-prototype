@@ -68,7 +68,7 @@ const getElement = (block: any) => {
     const imgUrl = block[type].file.url;
     return (
       <Card>
-        <Image src={imgUrl} alt={"img"}></Image>
+        <Image src={imgUrl} alt={"img"} width={64} height={64}></Image>
       </Card>
     );
   }
@@ -76,6 +76,11 @@ const getElement = (block: any) => {
     const text = block[type].rich_text.map((text: any, index: number) => (
       <span key={index}>{text.content}</span>
     ));
-    return <Card>{`[${type}] ${text}`}</Card>;
+    return (
+      <Card>
+        {`[${type}]`}
+        {text}
+      </Card>
+    );
   }
 };
