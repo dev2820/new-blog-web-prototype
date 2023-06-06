@@ -2,6 +2,7 @@ import { newBlogAPI } from "@/utils";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Card from "@/components/Card";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 export default function PublishPage() {
   const { query } = useRouter();
@@ -39,5 +40,42 @@ const getTitle = (meta: any) => {
 
 const getElement = (block: any) => {
   console.log(block);
-  return <Card>wait</Card>;
+  const type = block.type;
+  if (type === "bookmark") {
+    return <Card>{`[${type}] ${block[type].url}`}</Card>;
+  }
+  if (type === "paragraph") {
+    return (
+      <Card>{`[${type}] ${block[type].rich_text.map(
+        (text: any, index: number) => <span key={index}>{text.content}</span>
+      )}`}</Card>
+    );
+  }
+  if (type === "heading_2") {
+    return (
+      <Card>{`[${type}] ${block[type].rich_text.map(
+        (text: any, index: number) => <span key={index}>{text.content}</span>
+      )}`}</Card>
+    );
+  }
+  if (type === "heading_3") {
+    const text = block[type].rich_text.map((text: any, index: number) => (
+      <span key={index}>{text.content}</span>
+    ));
+    return <Card>{`[${type}] ${text}`}</Card>;
+  }
+  if (type === "image") {
+    const imgUrl = block[type].file.url;
+    return (
+      <Card>
+        <Image src={imgUrl} alt={"img"}></Image>
+      </Card>
+    );
+  }
+  if (type === "bulleted_list_item") {
+    const text = block[type].rich_text.map((text: any, index: number) => (
+      <span key={index}>{text.content}</span>
+    ));
+    return <Card>{`[${type}] ${text}`}</Card>;
+  }
 };
