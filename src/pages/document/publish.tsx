@@ -47,20 +47,24 @@ const getElement = (block: any) => {
   if (type === "paragraph") {
     return (
       <Card>{`[${type}] ${block[type].rich_text.map(
-        (text: any, index: number) => <span key={index}>{text.content}</span>
+        (text: any, index: number) => (
+          <span key={index}>{text.text.content}</span>
+        )
       )}`}</Card>
     );
   }
   if (type === "heading_2") {
     return (
       <Card>{`[${type}] ${block[type].rich_text.map(
-        (text: any, index: number) => <span key={index}>{text.content}</span>
+        (text: any, index: number) => (
+          <span key={index}>{text.text.content}</span>
+        )
       )}`}</Card>
     );
   }
   if (type === "heading_3") {
     const text = block[type].rich_text.map((text: any, index: number) => (
-      <span key={index}>{text.content}</span>
+      <span key={index}>{text.text.content}</span>
     ));
     return <Card>{`[${type}] ${text}`}</Card>;
   }
@@ -74,7 +78,7 @@ const getElement = (block: any) => {
   }
   if (type === "bulleted_list_item") {
     const text = block[type].rich_text.map((text: any, index: number) => (
-      <span key={index}>{text.content}</span>
+      <span key={index}>{text.text.content}</span>
     ));
     return (
       <Card>
