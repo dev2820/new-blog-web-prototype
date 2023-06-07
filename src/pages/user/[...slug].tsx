@@ -21,7 +21,10 @@ export default function UserPage() {
     window.location.assign(`api/link/notion`);
   };
 
-  if (query.slug && query.slug.length > 0) {
+  if (!query.slug || query.slug.length < 1) {
+    return <Layout>wrong</Layout>;
+  }
+  if (query.slug.length > 2) {
     return (
       <Layout>
         <p>comming soon...</p>
