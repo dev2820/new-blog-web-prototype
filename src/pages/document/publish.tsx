@@ -2,19 +2,26 @@ import { newBlogAPI } from "@/utils";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Card from "@/components/Card";
 import { useRouter } from "next/router";
+import { useUser } from "@/stores/user";
 import Image from "next/image";
 
 export default function PublishPage() {
-  const { query } = useRouter();
+  const router = useRouter();
+  const user = useUser();
   const [pageMeta, setPageMeta] = useState<any>({});
   const [pageBlocks, setPageBlocks] = useState<any>([]);
   useEffect(() => {
-    const { provider, id } = query;
+    const { provider, id } = router.query;
     fetchDocument(String(provider), String(id), setPageMeta, setPageBlocks);
-  }, [query]);
+  }, [router.query]);
 
-  const handlePublish = () => {
-    // newBlogAPI.post();
+  const handlePublish = async () => {
+    await newBlogAPI.post("/user/document/publish", {
+      meta: pageMeta,
+      blocks: pageBlocks,
+    });
+
+    router.push(`/@${user.profile.name}/${getTitle(pageMeta)}`);
   };
 
   return (
