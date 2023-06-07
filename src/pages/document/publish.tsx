@@ -46,52 +46,42 @@ const getElement = (block: any) => {
   }
   if (type === "paragraph") {
     return (
-      <Card>
-        {`[${type}]`}
+      <p>
         {block[type].rich_text.map((text: any, index: number) => (
           <span key={index}>{text.text.content}</span>
         ))}
-      </Card>
+      </p>
     );
   }
   if (type === "heading_2") {
     return (
-      <Card>
-        {`[${type}]`}
+      <h2>
         {block[type].rich_text.map((text: any, index: number) => (
           <span key={index}>{text.text.content}</span>
         ))}
-      </Card>
+      </h2>
     );
   }
   if (type === "heading_3") {
-    <Card>
+    <h3>
       {`[${type}]`}
       {block[type].rich_text.map((text: any, index: number) => (
         <span key={index}>{text.text.content}</span>
       ))}
-    </Card>;
+    </h3>;
   }
   if (type === "image") {
-    return (
-      <Card>
-        {/* <Image
-          src={`data:image/png;base64,${block[type].file.base64}`}
-          alt="untitled"
-        /> */}
-        <img src={block[type].file.url}></img>
-      </Card>
-    );
+    return <img src={block[type].file.url}></img>;
   }
   if (type === "bulleted_list_item") {
     const text = block[type].rich_text.map((text: any, index: number) => (
       <span key={index}>{text.text.content}</span>
     ));
     return (
-      <Card>
+      <li>
         {`[${type}]`}
         {text}
-      </Card>
+      </li>
     );
   }
 };
