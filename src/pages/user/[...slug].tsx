@@ -24,7 +24,7 @@ export default function UserPage() {
   if (!query.slug || query.slug.length < 1) {
     return <Layout>wrong</Layout>;
   }
-  if (query.slug.length > 2) {
+  if (query.slug.length >= 2) {
     return (
       <Layout>
         <p>comming soon...</p>
