@@ -44,15 +44,15 @@ const getElement = (block: any) => {
   const type = block.type;
   if (type === "bookmark") {
     return (
-      <a href={block[type].url}>
-        <p>{`[${type}] ${block[type].url}`}</p>
+      <a href={block.url}>
+        <p>{block.url}</p>
       </a>
     );
   }
   if (type === "paragraph") {
     return (
       <p>
-        {block[type].rich_text.map((text: any, index: number) => (
+        {block.richText.map((text: any, index: number) => (
           <span key={index}>{text.text.content}</span>
         ))}
       </p>
@@ -61,7 +61,7 @@ const getElement = (block: any) => {
   if (type === "heading_2") {
     return (
       <h2>
-        {block[type].rich_text.map((text: any, index: number) => (
+        {block.richText.map((text: any, index: number) => (
           <span key={index}>{text.text.content}</span>
         ))}
       </h2>
@@ -69,24 +69,18 @@ const getElement = (block: any) => {
   }
   if (type === "heading_3") {
     <h3>
-      {`[${type}]`}
-      {block[type].rich_text.map((text: any, index: number) => (
+      {block.richText.map((text: any, index: number) => (
         <span key={index}>{text.text.content}</span>
       ))}
     </h3>;
   }
   if (type === "image") {
-    return <img src={block[type].file.url}></img>;
+    return <img src={block.url}></img>;
   }
   if (type === "bulleted_list_item") {
-    const text = block[type].rich_text.map((text: any, index: number) => (
+    const text = block.richText.map((text: any, index: number) => (
       <span key={index}>{text.text.content}</span>
     ));
-    return (
-      <li>
-        {`[${type}]`}
-        {text}
-      </li>
-    );
+    return <li>{text}</li>;
   }
 };
