@@ -15,7 +15,8 @@ export default function PublishPage() {
 
   return (
     <>
-      <h2>publish - {getTitle(pageMeta)}</h2>
+      <h2>{getTitle(pageMeta)}</h2>
+      <button>publish</button>
       <article>{pageBlocks.map((block: any) => getElement(block))}</article>
     </>
   );
@@ -42,7 +43,7 @@ const getElement = (block: any) => {
   console.log(block);
   const type = block.type;
   if (type === "bookmark") {
-    return <Card>{`[${type}] ${block[type].url}`}</Card>;
+    return <a href={block[type].url}>{`[${type}] ${block[type].url}`}</a>;
   }
   if (type === "paragraph") {
     return (
