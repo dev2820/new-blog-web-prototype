@@ -15,7 +15,7 @@ export default function UserPage() {
   const slug = Array(_slug);
   const username = slug[0];
 
-  console.log(slug);
+  console.log(query, query.params, slug);
   const handleLinkNotion = async () => {
     localStorage.setItem("prevUrl", asPath);
     window.location.assign(`api/link/notion`);
