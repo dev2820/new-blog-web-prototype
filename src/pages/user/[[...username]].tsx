@@ -18,6 +18,7 @@ export default function UserPage() {
     window.location.assign(`api/link/notion`);
   };
 
+  console.log(query.slug, query);
   if (query.slug && query.slug.length > 0) {
     return (
       <Layout>
