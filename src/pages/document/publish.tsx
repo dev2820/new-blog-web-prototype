@@ -13,10 +13,14 @@ export default function PublishPage() {
     fetchDocument(String(provider), String(id), setPageMeta, setPageBlocks);
   }, [query]);
 
+  const handlePublish = () => {
+    // newBlogAPI.post();
+  };
+
   return (
     <>
-      <h2>{getTitle(pageMeta)}</h2>
-      <button>publish</button>
+      <h1>{getTitle(pageMeta)}</h1>
+      <button onClick={handlePublish}>publish</button>
       <article>{pageBlocks.map((block: any) => getElement(block))}</article>
     </>
   );
