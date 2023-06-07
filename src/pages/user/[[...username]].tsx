@@ -5,6 +5,7 @@ import axios from "axios";
 import Link from "next/link";
 import { ENV } from "@/constants";
 import { newBlogAPI } from "@/utils";
+import Layout from "@/layouts/Layout";
 
 export default function UserPage() {
   const { query = {}, route, asPath } = useRouter();
@@ -17,8 +18,16 @@ export default function UserPage() {
     window.location.assign(`api/link/notion`);
   };
 
+  if (query.slug && query.slug.length > 0) {
+    return (
+      <Layout>
+        <p>comming soon...</p>
+      </Layout>
+    );
+  }
+
   return (
-    <div>
+    <Layout>
       <h1>here is user page for {username || "???"}</h1>
       <a onClick={handleLinkNotion}>
         <button>link notion</button>
@@ -31,7 +40,7 @@ export default function UserPage() {
           </li>
         ))}
       </ul>
-    </div>
+    </Layout>
   );
 }
 async function fetchPosts(username: string, accessToken: string) {
