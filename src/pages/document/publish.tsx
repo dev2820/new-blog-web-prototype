@@ -4,6 +4,7 @@ import Card from "@/components/Card";
 import { useRouter } from "next/router";
 import { useUser } from "@/stores/user";
 import Image from "next/image";
+import Layout from "@/layouts/Layout";
 
 export default function PublishPage() {
   const router = useRouter();
@@ -25,11 +26,11 @@ export default function PublishPage() {
   };
 
   return (
-    <>
+    <Layout>
       <h1>{getTitle(pageMeta)}</h1>
       <button onClick={handlePublish}>publish</button>
       <article>{pageBlocks.map((block: any) => getElement(block))}</article>
-    </>
+    </Layout>
   );
 }
 

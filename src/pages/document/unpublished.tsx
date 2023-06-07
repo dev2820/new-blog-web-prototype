@@ -2,6 +2,7 @@ import { newBlogAPI } from "@/utils";
 import { useEffect, useState } from "react";
 import Card from "@/components/Card";
 import Link from "next/link";
+import Layout from "@/layouts/Layout";
 
 export default function UnpublishedPage() {
   const [docs, setDocs] = useState<any[]>([]);
@@ -18,7 +19,7 @@ export default function UnpublishedPage() {
   }, []);
 
   return (
-    <>
+    <Layout></Layout>
       <h2>unpublished</h2>
       <ul>
         {docs.map((doc, index) => (
@@ -33,6 +34,6 @@ export default function UnpublishedPage() {
           </li>
         ))}
       </ul>
-    </>
+    </Layout>
   );
 }
