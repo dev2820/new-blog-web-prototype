@@ -11,14 +11,16 @@ export default function UserPage() {
   const { query = {}, route, asPath } = useRouter();
   const temp = useRouter();
   const [posts, setPosts] = useState<any>([]);
-  const username = query.username;
+  const { slug: _slug } = query;
+  const slug = Array(_slug);
+  const username = slug[0];
 
+  console.log(slug);
   const handleLinkNotion = async () => {
     localStorage.setItem("prevUrl", asPath);
     window.location.assign(`api/link/notion`);
   };
 
-  console.log(query.slug, query);
   if (query.slug && query.slug.length > 0) {
     return (
       <Layout>
