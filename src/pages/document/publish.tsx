@@ -43,7 +43,11 @@ const getElement = (block: any) => {
   console.log(block);
   const type = block.type;
   if (type === "bookmark") {
-    return <a href={block[type].url}>{`[${type}] ${block[type].url}`}</a>;
+    return (
+      <a href={block[type].url}>
+        <p>{`[${type}] ${block[type].url}`}</p>
+      </a>
+    );
   }
   if (type === "paragraph") {
     return (
