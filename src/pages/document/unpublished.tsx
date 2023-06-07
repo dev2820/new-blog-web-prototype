@@ -19,7 +19,7 @@ export default function UnpublishedPage() {
   }, []);
 
   return (
-    <Layout></Layout>
+    <Layout>
       <h2>unpublished</h2>
       <ul>
         {docs.map((doc, index) => (
