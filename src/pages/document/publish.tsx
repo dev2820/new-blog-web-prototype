@@ -64,47 +64,22 @@ const getElement = (block: any) => {
     );
   }
   if (type === "paragraph") {
-    return (
-      <p>
-        {block.richText.map((text: any, index: number) => (
-          <span key={index}>{text.text.content}</span>
-        ))}
-      </p>
-    );
+    return <p>{convertRichText(block.richText)}</p>;
   }
   if (type === "heading_2") {
-    return (
-      <h2>
-        {block.richText.map((text: any, index: number) => (
-          <span key={index}>{text.text.content}</span>
-        ))}
-      </h2>
-    );
+    return <h2>{convertRichText(block.richText)}</h2>;
   }
   if (type === "heading_3") {
-    return (
-      <h3>
-        {block.richText.map((text: any, index: number) => (
-          <span key={index}>{text.text.content}</span>
-        ))}
-      </h3>
-    );
+    return <h3>{convertRichText(block.richText)}</h3>;
   }
   if (type === "image") {
     return <img src={block.url}></img>;
   }
   if (type === "bulleted_list_item") {
-    const text = block.richText.map((text: any, index: number) => (
-      <span key={index}>{text.text.content}</span>
-    ));
-    return <li>{text}</li>;
+    return <li>{convertRichText(block.richText)}</li>;
   }
   if (type === "quote") {
-    <blockquote>
-      {block.richText.map((text: any, index: number) => (
-        <span key={index}>{text.text.content}</span>
-      ))}
-    </blockquote>;
+    <blockquote>{convertRichText(block.richText)}</blockquote>;
   }
 };
 
