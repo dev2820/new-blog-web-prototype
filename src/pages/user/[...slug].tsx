@@ -25,7 +25,6 @@ export default function UserPage() {
     return <Layout>wrong</Layout>;
   }
   if (query.slug.length >= 2) {
-    console.log(slug);
     return <Post author={username} title={String(slug[1])} />;
   }
 

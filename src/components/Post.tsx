@@ -14,13 +14,13 @@ const Post: React.FC<Props> = ({ author, title }) => {
     contents: {},
   });
   const [blocks] = useState<any>([]);
-
+  console.log(author, title);
   useEffect(() => {
     fetchPost({ author, title });
   }, []);
   return (
     <Layout>
-      <h1>{post.meta.title}</h1>
+      <h1>{title}</h1>
       <Link href={`/@${author}`}>{author}</Link>
       {}
     </Layout>
