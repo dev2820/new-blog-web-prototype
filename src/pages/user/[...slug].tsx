@@ -7,13 +7,14 @@ import { ENV } from "@/constants";
 import { newBlogAPI } from "@/utils";
 import Layout from "@/layouts/Layout";
 import Post from "@/components/Post";
+import { isNil } from "@/utils";
 
 export default function UserPage() {
   const { query = {}, route, asPath } = useRouter();
   const temp = useRouter();
   const [posts, setPosts] = useState<any>([]);
   const { slug: _slug } = query;
-  const slug = _slug as Array<string>;
+  const slug = isNil(_slug) ? [] : (_slug as Array<string>);
   const username = String(slug[0]);
 
   const handleLinkNotion = async () => {
