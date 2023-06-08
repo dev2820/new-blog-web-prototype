@@ -1,23 +1,30 @@
 import Layout from "@/layouts/Layout";
 import { newBlogAPI } from "@/utils";
 import Link from "next/link";
-import React, { PropsWithChildren, useEffect, useState } from "react";
+import React, {
+  Dispatch,
+  PropsWithChildren,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 
 interface Props extends PropsWithChildren {
   author: string;
   title: string;
 }
 
+type Post = { meta: any; contents: any };
+
 const Post: React.FC<Props> = (props) => {
   const { author, title } = props;
-  const [post, setPost] = useState<{ meta: any; contents: any }>({
+  const [post, setPost] = useState<Post>({
     meta: {},
     contents: {},
   });
-  const [blocks] = useState<any>([]);
-  console.log(props, author, title);
+
   useEffect(() => {
-    fetchPost({ author, title });
+    fetchPost({ author, title, setPost });
   }, []);
   return (
     <Layout>
@@ -33,10 +40,14 @@ export default Post;
 const fetchPost = async ({
   author,
   title,
+  setPost,
 }: {
   author: string;
   title: string;
+  setPost: Dispatch<SetStateAction<Post>>;
 }) => {
-  const post = await newBlogAPI.get(`/post/@${author}/${title}`);
-  console.log(post);
+  const { data: post } = await newBlogAPI.get<Post>(
+    `/post/@${author}/${title}`
+  );
+  setPost(post);
 };
