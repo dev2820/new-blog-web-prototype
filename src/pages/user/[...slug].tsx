@@ -13,7 +13,7 @@ export default function UserPage() {
   const temp = useRouter();
   const [posts, setPosts] = useState<any>([]);
   const { slug: _slug } = query;
-  const slug = Array(_slug);
+  const slug = _slug as Array<string>;
   const username = String(slug[0]);
 
   const handleLinkNotion = async () => {
