@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ENV } from "@/constants";
 import { newBlogAPI } from "@/utils";
 import Layout from "@/layouts/Layout";
+import Post from "@/components/Post";
 
 export default function UserPage() {
   const { query = {}, route, asPath } = useRouter();
@@ -15,7 +16,6 @@ export default function UserPage() {
   const slug = Array(_slug);
   const username = slug[0];
 
-  console.log(query, query.params, slug);
   const handleLinkNotion = async () => {
     localStorage.setItem("prevUrl", asPath);
     window.location.assign(`api/link/notion`);
@@ -25,11 +25,7 @@ export default function UserPage() {
     return <Layout>wrong</Layout>;
   }
   if (query.slug.length >= 2) {
-    return (
-      <Layout>
-        <p>comming soon...</p>
-      </Layout>
-    );
+    return <Post author={String(slug[0])} title={String(slug[1])} />;
   }
 
   return (
@@ -48,16 +44,6 @@ export default function UserPage() {
       </ul>
     </Layout>
   );
-}
-async function fetchPosts(username: string, accessToken: string) {
-  try {
-    const { data } = await axios.post(`/api/post/${username}`, {
-      accessToken,
-    });
-    return data;
-  } catch {
-    return [];
-  }
 }
 
 const PostSummary = ({ post }: { post: any }) => {
