@@ -13,7 +13,8 @@ export default function UserPage() {
   const temp = useRouter();
   const [posts, setPosts] = useState<any>([]);
   const { slug: _slug } = query;
-  const slug = _slug as Array<string>;
+  console.log(query);
+  const slug = Array(_slug);
   console.log(slug);
   const username = String(slug[0]);
 
