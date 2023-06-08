@@ -49,6 +49,7 @@ const fetchPost = async ({
   const { data: post } = await newBlogAPI.get<Post>(
     `/post/@${author}/${title}`
   );
+  console.log(post);
   setPost(post);
 };
 
