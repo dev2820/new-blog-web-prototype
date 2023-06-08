@@ -14,7 +14,7 @@ export default function UserPage() {
   const [posts, setPosts] = useState<any>([]);
   const { slug: _slug } = query;
   const slug = Array(_slug);
-  const username = slug[0];
+  const username = String(slug[0]);
 
   const handleLinkNotion = async () => {
     localStorage.setItem("prevUrl", asPath);
@@ -25,7 +25,8 @@ export default function UserPage() {
     return <Layout>wrong</Layout>;
   }
   if (query.slug.length >= 2) {
-    return <Post author={String(slug[0])} title={String(slug[1])} />;
+    console.log(slug);
+    return <Post author={username} title={String(slug[1])} />;
   }
 
   return (
