@@ -8,13 +8,14 @@ interface Props extends PropsWithChildren {
   title: string;
 }
 
-const Post: React.FC<Props> = ({ author, title }) => {
+const Post: React.FC<Props> = (props) => {
+  const { author, title } = props;
   const [post, setPost] = useState<{ meta: any; contents: any }>({
     meta: {},
     contents: {},
   });
   const [blocks] = useState<any>([]);
-  console.log(author, title);
+  console.log(props, author, title);
   useEffect(() => {
     fetchPost({ author, title });
   }, []);
