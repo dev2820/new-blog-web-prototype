@@ -7,7 +7,7 @@ export default function LoginPage() {
 
   const handleGoogleLogin = () => {
     sessionStorage.setItem("prevUrl", router.route);
-    window.location.assign(`api/auth/google`);
+    window.location.assign(`/api/auth/google`);
   };
 
   if (profile.name) return <AlreadyLogined></AlreadyLogined>;
