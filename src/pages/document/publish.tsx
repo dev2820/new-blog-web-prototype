@@ -82,11 +82,13 @@ const getElement = (block: any) => {
     );
   }
   if (type === "heading_3") {
-    <h3>
-      {block.richText.map((text: any, index: number) => (
-        <span key={index}>{text.text.content}</span>
-      ))}
-    </h3>;
+    return (
+      <h3>
+        {block.richText.map((text: any, index: number) => (
+          <span key={index}>{text.text.content}</span>
+        ))}
+      </h3>
+    );
   }
   if (type === "image") {
     return <img src={block.url}></img>;
