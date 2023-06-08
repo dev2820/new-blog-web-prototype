@@ -97,4 +97,11 @@ const getElement = (block: any) => {
     ));
     return <li>{text}</li>;
   }
+  if (type === "quote") {
+    <blockquote>
+      {block.richText.map((text: any, index: number) => (
+        <span key={index}>{text.text.content}</span>
+      ))}
+    </blockquote>;
+  }
 };
