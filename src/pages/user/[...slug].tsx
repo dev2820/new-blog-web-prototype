@@ -13,9 +13,7 @@ export default function UserPage() {
   const temp = useRouter();
   const [posts, setPosts] = useState<any>([]);
   const { slug: _slug } = query;
-  console.log(query);
-  const slug = Array(_slug);
-  console.log(slug);
+  const slug = _slug as Array<string>;
   const username = String(slug[0]);
 
   const handleLinkNotion = async () => {
@@ -23,10 +21,11 @@ export default function UserPage() {
     window.location.assign(`api/link/notion`);
   };
 
-  if (!query.slug || query.slug.length < 1) {
+  if (!slug || slug.length < 1) {
     return <Layout>wrong</Layout>;
   }
-  if (query.slug.length >= 2) {
+
+  if (slug.length >= 2) {
     // console.log(28, slug, username, String(slug[1]));
     return <Post author={username} title={String(slug[1])} />;
   }
