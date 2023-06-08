@@ -27,7 +27,6 @@ export default function UserPage() {
   }
 
   if (slug.length >= 2) {
-    // console.log(28, slug, username, String(slug[1]));
     return <Post author={username} title={String(slug[1])} />;
   }
 

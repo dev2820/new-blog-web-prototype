@@ -49,12 +49,11 @@ const fetchPost = async ({
   const { data: post } = await newBlogAPI.get<Post>(
     `/post/@${author}/${title}`
   );
-  console.log(post);
+
   setPost(post);
 };
 
 const getElement = (block: any) => {
-  console.log(block);
   const type = block.type;
   if (type === "bookmark") {
     return (

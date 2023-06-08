@@ -54,7 +54,6 @@ const getTitle = (meta: any) => {
 };
 
 const getElement = (block: any) => {
-  console.log(block);
   const type = block.type;
   if (type === "bookmark") {
     return (
