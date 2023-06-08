@@ -107,3 +107,16 @@ const getElement = (block: any) => {
     </blockquote>;
   }
 };
+
+const convertRichText = (richText: any) => {
+  return richText.map((text: any, index: number) => {
+    if (!!text.href) {
+      return (
+        <a key={index} href={text.href}>
+          {text.text.content}
+        </a>
+      );
+    }
+    return <span key={index}>{text.text.content}</span>;
+  });
+};
