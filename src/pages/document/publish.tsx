@@ -17,9 +17,11 @@ export default function PublishPage() {
   }, [router.query]);
 
   const handlePublish = async () => {
+    const { provider, id } = router.query;
+
     await newBlogAPI.post("/user/document/publish", {
-      meta: pageMeta,
-      blocks: pageBlocks,
+      provider,
+      pageId: id,
     });
 
     router.push(`/@${user.profile.name}/${getTitle(pageMeta)}`);
