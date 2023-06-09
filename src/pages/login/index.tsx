@@ -6,7 +6,7 @@ export default function LoginPage() {
   const { profile } = useUser();
 
   const handleGoogleLogin = () => {
-    sessionStorage.setItem("prevUrl", router.route);
+    localStorage.setItem("prevUrl", router.route);
     window.location.assign(`/api/auth/google`);
   };
 
