@@ -8,6 +8,7 @@ import { newBlogAPI } from "@/utils";
 import Layout from "@/layouts/Layout";
 import Post from "@/components/Post";
 import { isNil } from "@/utils";
+import Head from "next/head";
 
 export default function UserPage({ isPost, post }: any) {
   const { query = {}, route, asPath } = useRouter();
@@ -27,7 +28,14 @@ export default function UserPage({ isPost, post }: any) {
   }
 
   if (isPost) {
-    return <Post post={post} />;
+    return (
+      <>
+        <Head>
+          <title>{post.meta.title}</title>
+        </Head>
+        <Post post={post} />;
+      </>
+    );
   }
 
   return (
