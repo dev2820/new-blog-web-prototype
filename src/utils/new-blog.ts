@@ -8,7 +8,7 @@ export const newBlogAPI = axios.create({
 newBlogAPI.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("new-blog-token");
-    console.log(11, token);
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
