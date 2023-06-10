@@ -9,7 +9,7 @@ import Layout from "@/layouts/Layout";
 import Post from "@/components/Post";
 import { isNil } from "@/utils";
 
-export default function UserPage({ isPost, post }: any) {
+export default function UserPage(props: any) {
   const { query = {}, route, asPath } = useRouter();
   const temp = useRouter();
   const [posts, setPosts] = useState<any>([]);
@@ -17,7 +17,7 @@ export default function UserPage({ isPost, post }: any) {
   const slug = isNil(_slug) ? [] : (_slug as Array<string>);
   const username = String(slug[0]);
 
-  console.log(isPost, post);
+  console.log(props);
   const handleLinkNotion = async () => {
     localStorage.setItem("prevUrl", asPath);
     window.location.assign(`api/link/notion`);
@@ -56,7 +56,20 @@ const PostSummary = ({ post }: { post: any }) => {
 };
 
 export async function getServerSideProps({ query }: any) {
-  console.log(query);
+  const fetchPost = async ({
+    author,
+    title,
+  }: {
+    author: string;
+    title: string;
+  }) => {
+    const { data: post } = await newBlogAPI.get<Post>(
+      `/post/@${author}/${title}`
+    );
+
+    return post;
+  };
+
   const { slug: _slug } = query;
   const slug = isNil(_slug) ? [] : (_slug as Array<string>);
 
@@ -81,17 +94,3 @@ export async function getServerSideProps({ query }: any) {
     isPost: false,
   };
 }
-
-const fetchPost = async ({
-  author,
-  title,
-}: {
-  author: string;
-  title: string;
-}) => {
-  const { data: post } = await newBlogAPI.get<Post>(
-    `/post/@${author}/${title}`
-  );
-
-  return post;
-};
