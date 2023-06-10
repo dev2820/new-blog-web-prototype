@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, SetStateAction, Dispatch } from "react";
 import { useRouter } from "next/router";
 import { useNotion } from "@/stores/notion";
 import axios from "axios";
@@ -8,9 +8,8 @@ import { newBlogAPI } from "@/utils";
 import Layout from "@/layouts/Layout";
 import Post from "@/components/Post";
 import { isNil } from "@/utils";
-import { GetServerSideProps } from "next/types";
 
-export default function UserPage() {
+export default function UserPage({ isPost, post }: any) {
   const { query = {}, route, asPath } = useRouter();
   const temp = useRouter();
   const [posts, setPosts] = useState<any>([]);
@@ -18,6 +17,7 @@ export default function UserPage() {
   const slug = isNil(_slug) ? [] : (_slug as Array<string>);
   const username = String(slug[0]);
 
+  console.log(isPost, post);
   const handleLinkNotion = async () => {
     localStorage.setItem("prevUrl", asPath);
     window.location.assign(`api/link/notion`);
@@ -57,9 +57,41 @@ const PostSummary = ({ post }: { post: any }) => {
 
 export async function getServerSideProps({ query }: any) {
   console.log(query);
-  // const { data } = await await newBlogAPI.get(); // absolute URL (Server Side)
+  const { slug: _slug } = query;
+  const slug = isNil(_slug) ? [] : (_slug as Array<string>);
+
+  if (!slug || slug.length < 1) {
+    return {
+      isPost: null,
+    };
+  }
+
+  if (slug.length >= 2) {
+    const author = String(slug[0]);
+    const title = String(slug[1]);
+    const post = await fetchPost({ author, title });
+
+    return {
+      isPost: true,
+      post,
+    };
+  }
 
   return {
-    // props: { results }, // props를 통해 page에 data전달
+    isPost: false,
   };
 }
+
+const fetchPost = async ({
+  author,
+  title,
+}: {
+  author: string;
+  title: string;
+}) => {
+  const { data: post } = await newBlogAPI.get<Post>(
+    `/post/@${author}/${title}`
+  );
+
+  return post;
+};
