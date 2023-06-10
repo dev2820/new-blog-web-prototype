@@ -10,48 +10,28 @@ import React, {
 } from "react";
 
 interface Props extends PropsWithChildren {
-  author: string;
-  title: string;
+  post: {
+    contents: Array<any>;
+    meta: any;
+  };
 }
 
 type Post = { meta: any; contents: any[] };
 
-const Post: React.FC<Props> = (props) => {
-  const { author, title } = props;
-  const [post, setPost] = useState<Post>({
-    meta: {},
-    contents: [],
-  });
+const Post: React.FC<Props> = ({ post }) => {
+  const { meta, contents } = post;
+  const { author, title } = meta;
 
-  useEffect(() => {
-    fetchPost({ author, title, setPost });
-  }, []);
   return (
     <Layout>
       <h1>{title}</h1>
       <Link href={`/@${author}`}>{author}</Link>
-      <article>{post.contents.map((block: any) => getElement(block))}</article>
+      <article>{contents.map((block: any) => getElement(block))}</article>
     </Layout>
   );
 };
 
 export default Post;
-
-const fetchPost = async ({
-  author,
-  title,
-  setPost,
-}: {
-  author: string;
-  title: string;
-  setPost: Dispatch<SetStateAction<Post>>;
-}) => {
-  const { data: post } = await newBlogAPI.get<Post>(
-    `/post/@${author}/${title}`
-  );
-
-  setPost(post);
-};
 
 const getElement = (block: any) => {
   const type = block.type;
