@@ -9,7 +9,7 @@ import Layout from "@/layouts/Layout";
 import Post from "@/components/Post";
 import { isNil } from "@/utils";
 
-export default function UserPage(props: any) {
+export default function UserPage({ isPost, post }: any) {
   const { query = {}, route, asPath } = useRouter();
   const temp = useRouter();
   const [posts, setPosts] = useState<any>([]);
@@ -17,17 +17,16 @@ export default function UserPage(props: any) {
   const slug = isNil(_slug) ? [] : (_slug as Array<string>);
   const username = String(slug[0]);
 
-  console.log(props);
   const handleLinkNotion = async () => {
     localStorage.setItem("prevUrl", asPath);
     window.location.assign(`api/link/notion`);
   };
 
-  if (!slug || slug.length < 1) {
+  if (isNil(isPost)) {
     return <Layout>wrong</Layout>;
   }
 
-  if (slug.length >= 2) {
+  if (isPost) {
     return <Post author={username} title={String(slug[1])} />;
   }
 
@@ -88,7 +87,6 @@ export async function getServerSideProps({ query }: any) {
   if (slug.length >= 2) {
     const author = String(slug[0]);
     const title = String(slug[1]);
-    console.log(author, title);
     const post = await fetchPost({ author, title });
 
     return {
