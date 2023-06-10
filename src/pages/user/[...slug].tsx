@@ -25,7 +25,7 @@ export default function UserPage({ isPost, post }: any) {
   if (isNil(isPost)) {
     return <Layout>wrong</Layout>;
   }
-
+  console.log(post);
   if (isPost) {
     return <Post author={username} title={String(slug[1])} />;
   }
@@ -68,7 +68,6 @@ export async function getServerSideProps({ query }: any) {
       );
       return post;
     } catch (err) {
-      console.log(72, err);
       return null;
     }
   };
