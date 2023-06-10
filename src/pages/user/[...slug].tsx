@@ -75,7 +75,9 @@ export async function getServerSideProps({ query }: any) {
 
   if (!slug || slug.length < 1) {
     return {
-      isPost: null,
+      props: {
+        isPost: null,
+      },
     };
   }
 
@@ -85,12 +87,16 @@ export async function getServerSideProps({ query }: any) {
     const post = await fetchPost({ author, title });
 
     return {
-      isPost: true,
-      post,
+      props: {
+        isPost: true,
+        post,
+      },
     };
   }
 
   return {
-    isPost: false,
+    props: {
+      isPost: false,
+    },
   };
 }
