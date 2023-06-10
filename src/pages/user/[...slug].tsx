@@ -84,6 +84,7 @@ export async function getServerSideProps({ query }: any) {
   if (slug.length >= 2) {
     const author = String(slug[0]);
     const title = String(slug[1]);
+    console.log(author, title);
     const post = await fetchPost({ author, title });
 
     return {
