@@ -63,10 +63,12 @@ export async function getServerSideProps({ query }: any) {
     author: string;
     title: string;
   }) => {
-    const { data: post } = await newBlogAPI.get<Post>(
-      `/post/@${author}/${title}`
+    // const { data: post } = await newBlogAPI.get<Post>(
+    //   `/post/@${author}/${title}`
+    // );
+    const { data: post } = await axios.get<Post>(
+      `/api/post/@${author}/${title}`
     );
-
     return post;
   };
 
