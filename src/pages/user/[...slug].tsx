@@ -64,7 +64,7 @@ export async function getServerSideProps({ query }: any) {
   }) => {
     try {
       const { data: post } = await axios.get<Post>(
-        `api/post/@${author}/${title}`
+        `/api/post/@${author}/${title}`
       );
       return post;
     } catch (err) {
