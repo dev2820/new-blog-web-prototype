@@ -8,6 +8,7 @@ import { newBlogAPI } from "@/utils";
 import Layout from "@/layouts/Layout";
 import Post from "@/components/Post";
 import { isNil } from "@/utils";
+import { GetServerSideProps } from "next/types";
 
 export default function UserPage() {
   const { query = {}, route, asPath } = useRouter();
@@ -53,3 +54,12 @@ const PostSummary = ({ post }: { post: any }) => {
 
   return <div>{title}</div>;
 };
+
+export async function getServerSideProps({ query }: any) {
+  console.log(query);
+  // const { data } = await await newBlogAPI.get(); // absolute URL (Server Side)
+
+  return {
+    // props: { results }, // props를 통해 page에 data전달
+  };
+}
